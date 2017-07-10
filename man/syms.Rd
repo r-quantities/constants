@@ -6,7 +6,7 @@
 \alias{syms_with_errors}
 \alias{syms_with_units}
 \title{Lists containing all symbols.}
-\format{An object of class \code{list} of length 0.}
+\format{An object of class list or NULL (if not available).}
 \usage{
 syms
 
@@ -15,6 +15,18 @@ syms_with_errors
 syms_with_units
 }
 \description{
-Lazy loaded when used
+These lists contain the named values for all the fundamental physical constants.
+}
+\details{
+\code{syms} contains plain numeric values. \code{syms_with_errors} contains
+objects of type \code{errors}, which encloses values with absolute errors and enables
+automatic error propagation (only available if the \code{errors} package is installed;
+see the documentation of that package for further information). \code{syms_with_units}
+contains objects of type \code{units}, which encloses values with units and enables
+automatic conversion, derivation and simplification (only available if the \code{units}
+package is installed; see the documentation of that package for further information).
+}
+\seealso{
+\code{\link{codata}}
 }
 \keyword{datasets}

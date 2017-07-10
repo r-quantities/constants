@@ -6,7 +6,20 @@
 \alias{constants-package}
 \title{\pkg{constants}: Reference on Constants, Units and Uncertainty}
 \description{
-CODATA internationally recommended 2014 values of the fundamental physical constants.
+This package provides the 2014 version of the CODATA internationally recommended
+values of the fundamental physical constants for their use within the \R language.
+}
+\references{
+Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
+values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
+88, 035009.
+
+Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
+of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
+45, 043102.
+}
+\seealso{
+\code{\link{codata}}, \code{\link{syms}}
 }
 \author{
 Iñaki Ucar

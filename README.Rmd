@@ -19,7 +19,7 @@ knitr::opts_chunk$set(
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
 [![Downloads](http://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
 
-The **constants** package provides CODATA internationally recommended 2014 values of the fundamental physical constants.
+The **constants** package provides the 2014 version of the CODATA internationally recommended values of the fundamental physical constants for their use within the R language.
 
 ## Installation
 
