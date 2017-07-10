@@ -110,8 +110,8 @@ syms_with_units <- NULL
 #' lookup("planck", ignore.case=TRUE)
 #'
 #' @export
-lookup <- function(pattern, cols=c("quantity", "symbol", "type"), ...) { # nocov start
+lookup <- function(pattern, cols=c("quantity", "symbol", "type"), ...) {
   cols <- match.arg(cols, several.ok = TRUE)
   ind <- do.call(c, lapply(cols, function(col) grep(pattern, constants::codata[[col]], ...)))
   constants::codata[sort(unique(ind)),]
-} # nocov end
+}
