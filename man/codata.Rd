@@ -27,6 +27,6 @@ the fundamental physical constants. This dataset contains the "2014 CODATA"
 version, published on 25 June 2015.
 }
 \seealso{
-\code{\link{syms}}
+\code{\link{syms}}, \code{\link{lookup}}.
 }
 \keyword{datasets}

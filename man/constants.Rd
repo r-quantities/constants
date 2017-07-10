@@ -19,7 +19,7 @@ of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
 45, 043102.
 }
 \seealso{
-\code{\link{codata}}, \code{\link{syms}}
+\code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
 }
 \author{
 Iñaki Ucar

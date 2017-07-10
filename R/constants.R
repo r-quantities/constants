@@ -13,7 +13,7 @@
 #' of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
 #' 45, 043102.
 #'
-#' @seealso \code{\link{codata}}, \code{\link{syms}}
+#' @seealso \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
 #'
 #' @docType package
 #' @name constants
@@ -39,10 +39,10 @@ NULL
 #' of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
 #' 45, 043102.
 #'
-#' @seealso \code{\link{syms}}
+#' @seealso \code{\link{syms}}, \code{\link{lookup}}.
 "codata"
 
-#' Lists containing all symbols.
+#' Lists Containing All Symbols.
 #'
 #' These lists contain the named values for all the fundamental physical constants.
 #'
@@ -56,7 +56,7 @@ NULL
 #' automatic conversion, derivation and simplification (only available if the \code{units}
 #' package is installed; see the documentation of that package for further information).
 #'
-#' @seealso \code{\link{codata}}
+#' @seealso \code{\link{codata}}, \code{\link{lookup}}.
 #'
 #' @export
 syms <- list()
@@ -86,4 +86,25 @@ syms_with_units <- NULL
     for (i in seq_along(syms))
       units(syms_with_units[[i]]) <<- units::parse_unit(constants::codata$unit[[i]])
   } else packageStartupMessage("Package 'units' not found. Constants with units ('syms_with_units') not available.")
+}
+
+#' Lookup for Fundamental Physical Constants
+#'
+#' A simple wrapper around \code{\link{grep}} for exploring the CODATA dataset.
+#'
+#' @param pattern character string containing a regular expression to be matched
+#' (see \code{\link{grep}}).
+#' @param cols columns to perform pattern matching (see \code{\link{codata}}).
+#' @param ... additional arguments for \code{\link{grep}}.
+#'
+#' @seealso \code{\link{codata}}, \code{\link{syms}}.
+#'
+#' @examples
+#' lookup("planck", ignore.case=TRUE)
+#'
+#' @export
+lookup <- function(pattern, cols=c("quantity", "symbol", "type"), ...) {
+  cols <- match.arg(cols, several.ok = TRUE)
+  ind <- do.call(c, lapply(cols, function(col) grep(pattern, codata[[col]], ...)))
+  codata[sort(unique(ind)),]
 }

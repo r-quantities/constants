@@ -33,4 +33,26 @@ devtools::install_github("Enchufa2/constants")
 ## Example
 
 ```{r}
+library(constants)
+
+# use the constants in a local environment
+with(syms, c0)
+
+# explore which constants are available
+lookup("planck", ignore.case=TRUE)
+
+# attach the symbols to the search path and use them explicitly
+attach(syms)
+hbar
+
+# use constants with errors
+detach(syms); attach(syms_with_errors)
+hbar
+
+# use constants with units
+detach(syms_with_errors); attach(syms_with_units)
+hbar
+
+# the whole dataset
+head(codata)
 ```

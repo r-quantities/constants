@@ -5,7 +5,7 @@
 \alias{syms}
 \alias{syms_with_errors}
 \alias{syms_with_units}
-\title{Lists containing all symbols.}
+\title{Lists Containing All Symbols.}
 \format{An object of class list or NULL (if not available).}
 \usage{
 syms
@@ -27,6 +27,6 @@ automatic conversion, derivation and simplification (only available if the \code
 package is installed; see the documentation of that package for further information).
 }
 \seealso{
-\code{\link{codata}}
+\code{\link{codata}}, \code{\link{lookup}}.
 }
 \keyword{datasets}
