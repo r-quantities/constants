@@ -79,13 +79,20 @@ syms_with_units <- NULL
     syms_with_errors <<- syms
     for (i in seq_along(syms))
       errors::errors(syms_with_errors[[i]]) <<- syms[[i]] * constants::codata$rel_uncertainty[[i]]
-  } else packageStartupMessage("Package 'errors' not found. Constants with errors ('syms_with_errors') not available.")
+  }
 
   if (requireNamespace("units", quietly = TRUE)) {
     syms_with_units <<- syms
     for (i in seq_along(syms))
       units(syms_with_units[[i]]) <<- units::parse_unit(constants::codata$unit[[i]])
-  } else packageStartupMessage("Package 'units' not found. Constants with units ('syms_with_units') not available.")
+  }
+}
+
+.onAttach <- function(libname, pkgname) {
+  if (!requireNamespace("errors", quietly = TRUE))
+    packageStartupMessage("Package 'errors' not found. Constants with errors ('syms_with_errors') not available.")
+  if (!requireNamespace("units", quietly = TRUE))
+    packageStartupMessage("Package 'units' not found. Constants with units ('syms_with_units') not available.")
 }
 
 #' Lookup for Fundamental Physical Constants
@@ -103,8 +110,8 @@ syms_with_units <- NULL
 #' lookup("planck", ignore.case=TRUE)
 #'
 #' @export
-lookup <- function(pattern, cols=c("quantity", "symbol", "type"), ...) {
+lookup <- function(pattern, cols=c("quantity", "symbol", "type"), ...) { # nocov start
   cols <- match.arg(cols, several.ok = TRUE)
-  ind <- do.call(c, lapply(cols, function(col) grep(pattern, codata[[col]], ...)))
-  codata[sort(unique(ind)),]
-}
+  ind <- do.call(c, lapply(cols, function(col) grep(pattern, constants::codata[[col]], ...)))
+  constants::codata[sort(unique(ind)),]
+} # nocov end
