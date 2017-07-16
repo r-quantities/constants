@@ -14,13 +14,19 @@ knitr::opts_chunk$set(
 
 # constants: Reference on Constants, Units and Uncertainty
 
-[![Build Status](https://travis-ci.org/Enchufa2/constants.svg?branch=master)](https://travis-ci.org/Enchufa2/constants)
+[![Build Status](http://travis-ci.org/Enchufa2/constants.svg?branch=master)](https://travis-ci.org/Enchufa2/constants)
 [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
 [![Downloads](http://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
 
 The **constants** package provides the 2014 version of the CODATA internationally recommended values of the fundamental physical constants for their use within the R language.
 
 ## Installation
+
+Install the release version from CRAN:
+
+```{r, eval=FALSE}
+install.packages("constants")
+```
 
 The installation from GitHub requires the [devtools](https://github.com/hadley/devtools) package.
 
@@ -38,7 +44,7 @@ library(constants)
 with(syms, c0)
 
 # explore which constants are available
-lookup("planck", ignore.case=TRUE)
+lookup("planck constant", ignore.case=TRUE)
 
 # attach the symbols to the search path and use them explicitly
 attach(syms)
@@ -54,4 +60,7 @@ hbar
 
 # the whole dataset
 head(codata)
+
+# number of constants per type
+dplyr::count(codata, type, sort=TRUE)
 ```
