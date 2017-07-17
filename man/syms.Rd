@@ -26,6 +26,21 @@ contains objects of type \code{units}, which encloses values with units and enab
 automatic conversion, derivation and simplification (only available if the \code{units}
 package is installed; see the documentation of that package for further information).
 }
+\examples{
+# the speed of light
+with(syms, c0)
+
+# the Planck constant
+attach(syms)
+hbar
+
+detach(syms); attach(syms_with_errors)
+hbar
+
+detach(syms_with_errors); attach(syms_with_units)
+hbar
+
+}
 \seealso{
 \code{\link{codata}}, \code{\link{lookup}}.
 }

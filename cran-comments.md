@@ -1,6 +1,12 @@
-## New submission
+## New submission (resubmission)
 
 This package provides the CODATA internationally recommended values of the fundamental physical constants (universal, electromagnetic, atomic and nuclear, physicochemical and adopted) for their use within the R language.
+
+Changes in this resubmission:
+
+* Improved 'Description'.
+* DOIs added to 'Description', man/constants and man/codata.
+* Examples added to man/syms.
 
 ## Test environments
 

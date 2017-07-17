@@ -7,11 +7,11 @@
 #'
 #' @references Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
 #' values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-#' 88, 035009.
+#' 88, 035009. \doi{10.1103/RevModPhys.88.035009}.
 #'
 #' Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
 #' of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-#' 45, 043102.
+#' 45, 043102. \doi{10.1063/1.4954402}.
 #'
 #' @seealso \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
 #'
@@ -33,11 +33,11 @@ NULL
 #'
 #' @source Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
 #' values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-#' 88, 035009.
+#' 88, 035009. \doi{10.1103/RevModPhys.88.035009}.
 #'
 #' Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
 #' of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-#' 45, 043102.
+#' 45, 043102. \doi{10.1063/1.4954402}.
 #'
 #' @seealso \code{\link{syms}}, \code{\link{lookup}}.
 "codata"
@@ -57,6 +57,20 @@ NULL
 #' package is installed; see the documentation of that package for further information).
 #'
 #' @seealso \code{\link{codata}}, \code{\link{lookup}}.
+#'
+#' @examples
+#' # the speed of light
+#' with(syms, c0)
+#'
+#' # the Planck constant
+#' attach(syms)
+#' hbar
+#'
+#' detach(syms); attach(syms_with_errors)
+#' hbar
+#'
+#' detach(syms_with_errors); attach(syms_with_units)
+#' hbar
 #'
 #' @export
 syms <- list()

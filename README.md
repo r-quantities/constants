@@ -5,7 +5,7 @@ constants: Reference on Constants, Units and Uncertainty
 
 [![Build Status](http://travis-ci.org/Enchufa2/constants.svg?branch=master)](https://travis-ci.org/Enchufa2/constants) [![CRAN\_Status\_Badge](http://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants) [![Downloads](http://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
 
-The **constants** package provides the 2014 version of the CODATA internationally recommended values of the fundamental physical constants for their use within the R language.
+The **constants** package provides the CODATA internationally recommended values of the fundamental physical constants, provided as symbols for direct use within the R language. Optionally, the values with errors and/or the values with units are also provided if the 'errors' and/or the 'units' packages are installed. The Committee on Data for Science and Technology (CODATA) is an interdisciplinary committee of the International Council for Science which periodically provides the internationally accepted set of values of the fundamental physical constants. This package contains the "2014 CODATA" version, published on 25 June 2015: Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016) <DOI:10.1103/RevModPhys.88.035009>, <DOI:10.1063/1.4954402>.
 
 Installation
 ------------

@@ -12,11 +12,11 @@ values of the fundamental physical constants for their use within the \R languag
 \references{
 Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
 values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-88, 035009.
+88, 035009. \doi{10.1103/RevModPhys.88.035009}.
 
 Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
 of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-45, 043102.
+45, 043102. \doi{10.1063/1.4954402}.
 }
 \seealso{
 \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
