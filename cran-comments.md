@@ -4,9 +4,7 @@ This package provides the CODATA internationally recommended values of the funda
 
 Changes in this resubmission:
 
-* Improved 'Description'.
-* DOIs added to 'Description', man/constants and man/codata.
-* Examples added to man/syms.
+* Remove <DOI:...> from README, changed to Markdown link format.
 
 ## Test environments
 
