@@ -100,6 +100,9 @@ syms_with_units <- NULL
       parse_unit <- units::parse_unit
     else parse_unit <- units::as_units
 
+    # define the speed of light
+    units::install_conversion_constant("c", "m s-1", syms$c0)
+
     syms_with_units <<- syms
     for (i in seq_along(syms))
       units(syms_with_units[[i]]) <<- parse_unit(constants::codata$unit[[i]])
