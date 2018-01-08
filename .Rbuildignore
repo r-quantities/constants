@@ -8,7 +8,7 @@
 ^.*\.gcda$
 ^.*\.gcno$
 ^.*\.gcov$
-working_dir
+csv
 .gitmodules
 .gitignore
 .git
