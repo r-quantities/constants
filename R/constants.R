@@ -96,9 +96,13 @@ syms_with_units <- NULL
   }
 
   if (requireNamespace("units", quietly = TRUE)) {
+    if (utils::packageVersion("units") < "0.5.0")
+      parse_unit <- units::parse_unit
+    else parse_unit <- units::as_units
+
     syms_with_units <<- syms
     for (i in seq_along(syms))
-      units(syms_with_units[[i]]) <<- units::parse_unit(constants::codata$unit[[i]])
+      units(syms_with_units[[i]]) <<- parse_unit(constants::codata$unit[[i]])
   }
 }
 
