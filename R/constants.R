@@ -101,7 +101,8 @@ syms_with_units <- NULL
     else parse_unit <- units::as_units
 
     # define the speed of light
-    units::install_conversion_constant("c", "m s-1", syms$c0)
+    # complex conversions won't work though (see units#71, units#84)
+    units::install_conversion_constant("c", "m/s", syms$c0)
 
     syms_with_units <<- syms
     for (i in seq_along(syms))
