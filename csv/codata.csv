@@ -2,7 +2,7 @@ quantity,symbol,value,unit,rel_uncertainty,type
 speed of light in vacuum,c0,299792458,m s-1,0,universal
 magnetic constant,mu0,4*pi*1e-7,N A-2,0,universal
 electric constant,epsilon0,1/(mu0*c0^2),F m-1,0,universal
-characteristic impedance of vacuum,Z0,mu0*c0,Ω,0,universal
+characteristic impedance of vacuum,Z0,mu0*c0,ohm,0,universal
 Newtonian constant of gravitation,G,6.67408e-11,m3 kg-1 s-2,4.7e-5,universal
 Newtonian constant of gravitation,G_hbar.c0,6.70861e-39,GeV-2 c4,4.7e-5,universal
 Planck constant,h,6.626070040e-34,J s,1.2e-8,universal
@@ -19,9 +19,9 @@ elementary charge,e,1.6021766208e-19,C,6.1e-9,electromagnetic
 elementary charge,e_h,2.417989262e14,A J-1,6.1e-9,electromagnetic
 magnetic flux quantum h/2*e,Phi0,2.067833831e-15,Wb,6.1e-9,electromagnetic
 conductance quantum 2*e^2/h,G0,7.7480917310e-5,S,2.3e-10,electromagnetic
-inverse of conductance quantum,G0_,12906.4037278,Ω,2.3e-10,electromagnetic
+inverse of conductance quantum,G0_,12906.4037278,ohm,2.3e-10,electromagnetic
 Josephson constant 2*e/h,KJ,483597.8525e9,Hz V-1,6.1e-9,electromagnetic
-von Klitzing constant h/e^2 = mu0*c0/2*alpha,RK,25812.8074555,Ω,2.3e-10,electromagnetic
+von Klitzing constant h/e^2 = mu0*c0/2*alpha,RK,25812.8074555,ohm,2.3e-10,electromagnetic
 Bohr magneton e*hbar/2*me,muB,927.4009994e-26,J T-1,6.2e-9,electromagnetic
 Bohr magneton,muB_eV,5.7883818012e-5,eV T-1,4.5e-10,electromagnetic
 Bohr magneton,muB_h,13.996245042e9,Hz T-1,6.2e-9,electromagnetic
@@ -233,6 +233,6 @@ relative atomic mass of 12C,Ar12C,12,1,0,adopted
 molar mass constant,Mu,1e-3,kg mol-1,0,adopted
 molar mass of 12C,M12C,12e-3,kg mol-1,0,adopted
 conventional value of Josephson constant,KJ90,483597.9,GHz V-1,0,adopted
-conventional value of von Klitzing constant,RK90,25812.807,Ω,0,adopted
+conventional value of von Klitzing constant,RK90,25812.807,ohm,0,adopted
 standard-state pressure,Pst,100,kPa,0,adopted
 standard atmosphere,Pat,101.325,kPa,0,adopted
