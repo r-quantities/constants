@@ -1,5 +1,5 @@
 language: R
-sudo: true
+sudo: false
 latex: false
 cache: packages
 r:
@@ -12,5 +12,7 @@ git:
 
 warnings_are_errors: true
 
-apt_packages:
-  - libudunits2-dev
+addons:
+  apt:
+    packages:
+      - libudunits2-dev
