@@ -1,7 +1,7 @@
 Package: constants
 Type: Package
 Title: Reference on Constants, Units and Uncertainty
-Version: 0.0.1.9000
+Version: 0.0.2.9000
 Authors@R: c(
     person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))
 Description: CODATA internationally recommended values of the fundamental physical 
