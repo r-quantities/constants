@@ -16,7 +16,7 @@
 #' @seealso \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
 #'
 #' @docType package
-#' @name constants
+#' @name constants-package
 NULL
 
 #' CODATA Recommended Values of the Fundamental Physical Constants: 2014
