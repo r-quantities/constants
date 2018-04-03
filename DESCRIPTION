@@ -3,7 +3,8 @@ Type: Package
 Title: Reference on Constants, Units and Uncertainty
 Version: 0.0.2.9000
 Authors@R: c(
-    person("Iñaki", "Ucar", email="i.ucar86@gmail.com", role=c("aut", "cph", "cre")))
+    person("Iñaki", "Ucar", email="i.ucar86@gmail.com", 
+      role=c("aut", "cph", "cre"), comment=c(ORCID="0000-0001-6403-5550")))
 Description: CODATA internationally recommended values of the fundamental physical 
     constants, provided as symbols for direct use within the R language. Optionally, 
     the values with errors and/or the values with units are also provided if the 
