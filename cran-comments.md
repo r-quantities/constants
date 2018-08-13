@@ -1,6 +1,7 @@
 ## Patch release
 
-This patch fixes the ERRORs due to the last update of the units package.
+The maintainer's address has changed. It is the same account, just a different
+alias. I'm sending confirmation from the previous address to CRAN-submissions.
 
 ## Test environments
 
