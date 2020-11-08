@@ -18,7 +18,9 @@ knitr::opts_chunk$set(
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
 [![Downloads](https://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
 
-The **constants** package provides the CODATA internationally recommended values of the fundamental physical constants, provided as symbols for direct use within the R language. Optionally, the values with errors and/or the values with units are also provided if the 'errors' and/or the 'units' packages are installed. The Committee on Data for Science and Technology (CODATA) is an interdisciplinary committee of the International Council for Science which periodically provides the internationally accepted set of values of the fundamental physical constants. This package contains the "2014 CODATA" version, published on 25 June 2015: Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016), DOI: [10.1103/RevModPhys.88.035009](http://doi.org/10.1103/RevModPhys.88.035009), [10.1063/1.4954402](http://doi.org/10.1063/1.4954402).
+The **constants** package provides the CODATA internationally recommended values of the fundamental physical constants, provided as symbols for direct use within the R language. Optionally, the values with errors and/or the values with units are also provided if the 'errors' and/or the 'units' packages are installed. The Committee on Data for Science and Technology (CODATA) is an interdisciplinary committee of the International Council for Science which periodically provides the internationally accepted set of values of the fundamental physical constants. This package contains the "2018 CODATA" version, published on May 2019.
+
+> Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020). The 2018 CODATA Recommended Values of the Fundamental Physical Constants (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova. Available at http://physics.nist.gov/constants, National Institute of Standards and Technology, Gaithersburg, MD 20899.
 
 ## Installation
 
@@ -44,23 +46,26 @@ library(constants)
 with(syms, c0)
 
 # explore which constants are available
-lookup("planck constant", ignore.case=TRUE)
+lookup("alpha particle", ignore.case=TRUE)
 
 # attach the symbols to the search path and use them explicitly
 attach(syms)
-hbar
+mal
 
 # use constants with errors
 detach(syms); attach(syms_with_errors)
-hbar
+mal
 
 # use constants with units
 detach(syms_with_errors); attach(syms_with_units)
-hbar
+mal
 
 # the whole dataset
 head(codata)
 
 # number of constants per type
-dplyr::count(codata, type, sort=TRUE)
+library(magrittr)
+codata %>%
+  tidyr::separate_rows(type, sep=", ") %>%
+  dplyr::count(type, sort=TRUE)
 ```

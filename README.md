@@ -1,14 +1,32 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-constants: Reference on Constants, Units and Uncertainty
-========================================================
 
-[![Build Status](https://travis-ci.org/r-quantities/constants.svg?branch=master)](https://travis-ci.org/r-quantities/constants) [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants) [![Downloads](https://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
+# constants: Reference on Constants, Units and Uncertainty
 
-The **constants** package provides the CODATA internationally recommended values of the fundamental physical constants, provided as symbols for direct use within the R language. Optionally, the values with errors and/or the values with units are also provided if the 'errors' and/or the 'units' packages are installed. The Committee on Data for Science and Technology (CODATA) is an interdisciplinary committee of the International Council for Science which periodically provides the internationally accepted set of values of the fundamental physical constants. This package contains the "2014 CODATA" version, published on 25 June 2015: Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016), DOI: [10.1103/RevModPhys.88.035009](http://doi.org/10.1103/RevModPhys.88.035009), [10.1063/1.4954402](http://doi.org/10.1063/1.4954402).
+[![Build
+Status](https://travis-ci.org/r-quantities/constants.svg?branch=master)](https://travis-ci.org/r-quantities/constants)
+[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
+[![Downloads](https://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
 
-Installation
-------------
+The **constants** package provides the CODATA internationally
+recommended values of the fundamental physical constants, provided as
+symbols for direct use within the R language. Optionally, the values
+with errors and/or the values with units are also provided if the
+‘errors’ and/or the ‘units’ packages are installed. The Committee on
+Data for Science and Technology (CODATA) is an interdisciplinary
+committee of the International Council for Science which periodically
+provides the internationally accepted set of values of the fundamental
+physical constants. This package contains the “2018 CODATA” version,
+published on May 2019.
+
+> Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor
+> (2020). The 2018 CODATA Recommended Values of the Fundamental Physical
+> Constants (Web Version 8.1). Database developed by J. Baker, M. Douma,
+> and S. Kotochigova. Available at <http://physics.nist.gov/constants>,
+> National Institute of Standards and Technology, Gaithersburg, MD
+> 20899.
+
+## Installation
 
 Install the release version from CRAN:
 
@@ -16,15 +34,15 @@ Install the release version from CRAN:
 install.packages("constants")
 ```
 
-The installation from GitHub requires the [remotes](https://cran.r-project.org/package=remotes) package.
+The installation from GitHub requires the
+[remotes](https://cran.r-project.org/package=remotes) package.
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("r-quantities/constants")
 ```
 
-Example
--------
+## Example
 
 ``` r
 library(constants)
@@ -34,83 +52,74 @@ with(syms, c0)
 #> [1] 299792458
 
 # explore which constants are available
-lookup("planck constant", ignore.case=TRUE)
-#>                  quantity  symbol            value      unit
-#> 7         Planck constant       h  6.626070040e-34       J s
-#> 8         Planck constant    h_eV  4.135667662e-15      eV s
-#> 9         Planck constant    hbar         h/(2*pi)       J s
-#> 10        Planck constant hbar_eV      h_eV/(2*pi)      eV s
-#> 11        Planck constant hbar.c0      197.3269788    MeV fm
-#> 212 molar Planck constant    Na.h 3.9903127110e-10 J s mol-1
-#> 213 molar Planck constant Na.h.c0   0.119626565582 J m mol-1
-#>     rel_uncertainty            type
-#> 7           1.2e-08       universal
-#> 8           6.1e-09       universal
-#> 9           1.2e-08       universal
-#> 10          6.1e-09       universal
-#> 11          6.1e-09       universal
-#> 212         4.5e-10 physicochemical
-#> 213         4.5e-10 physicochemical
+lookup("alpha particle", ignore.case=TRUE)
+#>        symbol                                     quantity               type
+#> 1         mal                          alpha particle mass Atomic and nuclear
+#> 2       malc2        alpha particle mass energy equivalent Atomic and nuclear
+#> 3    malc2mev alpha particle mass energy equivalent in MeV Atomic and nuclear
+#> 4        malu                     alpha particle mass in u Atomic and nuclear
+#> 5        mmal                    alpha particle molar mass Atomic and nuclear
+#> 6      malsme           alpha particle-electron mass ratio Atomic and nuclear
+#> 7      malsmp             alpha particle-proton mass ratio Atomic and nuclear
+#> 89  mesmalpha        electron to alpha particle mass ratio Atomic and nuclear
+#> 292      aral          alpha particle relative atomic mass               <NA>
+#>            value uncertainty   unit
+#> 1   6.644657e-27     2.0e-36     kg
+#> 2   5.971920e-10     1.8e-19      J
+#> 3   3.727379e+03     1.1e-06    MeV
+#> 4   4.001506e+00     6.3e-11      u
+#> 5   4.001506e-03     1.2e-12 kg/mol
+#> 6   7.294300e+03     2.4e-07      1
+#> 7   3.972600e+00     2.2e-10      1
+#> 89  1.370934e-04     4.5e-15      1
+#> 292 4.001506e+00     6.3e-11      1
 
 # attach the symbols to the search path and use them explicitly
 attach(syms)
-#> The following object is masked from package:base:
-#> 
-#>     F
-hbar
-#> [1] 1.054572e-34
+mal
+#> [1] 6.644657e-27
 
 # use constants with errors
 detach(syms); attach(syms_with_errors)
-#> The following object is masked from package:base:
-#> 
-#>     F
-hbar
-#> 1.05457180(1)e-34
+mal
+#> 6.644657336(2)e-27
 
 # use constants with units
 detach(syms_with_errors); attach(syms_with_units)
-#> The following object is masked from package:base:
-#> 
-#>     F
-hbar
-#> 1.054572e-34 J*s
+mal
+#> 6.644657e-27 [kg]
 
 # the whole dataset
 head(codata)
-#>                             quantity    symbol        value        unit
-#> 1           speed of light in vacuum        c0    299792458       m s-1
-#> 2                  magnetic constant       mu0    4*pi*1e-7       N A-2
-#> 3                  electric constant  epsilon0 1/(mu0*c0^2)       F m-1
-#> 4 characteristic impedance of vacuum        Z0       mu0*c0           Ω
-#> 5  Newtonian constant of gravitation         G  6.67408e-11 m3 kg-1 s-2
-#> 6  Newtonian constant of gravitation G_hbar.c0  6.70861e-39    GeV-2 c4
-#>   rel_uncertainty      type
-#> 1         0.0e+00 universal
-#> 2         0.0e+00 universal
-#> 3         0.0e+00 universal
-#> 4         0.0e+00 universal
-#> 5         4.7e-05 universal
-#> 6         4.7e-05 universal
+#>     symbol                                     quantity               type
+#> 1      mal                          alpha particle mass Atomic and nuclear
+#> 2    malc2        alpha particle mass energy equivalent Atomic and nuclear
+#> 3 malc2mev alpha particle mass energy equivalent in MeV Atomic and nuclear
+#> 4     malu                     alpha particle mass in u Atomic and nuclear
+#> 5     mmal                    alpha particle molar mass Atomic and nuclear
+#> 6   malsme           alpha particle-electron mass ratio Atomic and nuclear
+#>          value uncertainty   unit
+#> 1 6.644657e-27     2.0e-36     kg
+#> 2 5.971920e-10     1.8e-19      J
+#> 3 3.727379e+03     1.1e-06    MeV
+#> 4 4.001506e+00     6.3e-11      u
+#> 5 4.001506e-03     1.2e-12 kg/mol
+#> 6 7.294300e+03     2.4e-07      1
 
 # number of constants per type
-dplyr::count(codata, type, sort=TRUE)
-#> # A tibble: 15 x 2
-#>                          type     n
-#>                         <chr> <int>
-#>  1    atomic-nuclear-electron    31
-#>  2      atomic-nuclear-proton    26
-#>  3     atomic-nuclear-neutron    24
-#>  4            physicochemical    24
-#>  5      atomic-nuclear-helion    18
-#>  6        atomic-nuclear-muon    17
-#>  7            electromagnetic    17
-#>  8                  universal    16
-#>  9    atomic-nuclear-deuteron    15
-#> 10     atomic-nuclear-general    11
-#> 11         atomic-nuclear-tau    11
-#> 12      atomic-nuclear-triton    11
-#> 13                    adopted     7
-#> 14       atomic-nuclear-alpha     7
-#> 15 atomic-nuclear-electroweak     2
+library(magrittr)
+codata %>%
+  tidyr::separate_rows(type, sep=", ") %>%
+  dplyr::count(type, sort=TRUE)
+#> # A tibble: 8 x 2
+#>   type                   n
+#>   <chr>              <int>
+#> 1 Atomic and nuclear   173
+#> 2 <NA>                  68
+#> 3 Non-SI units          36
+#> 4 Electromagnetic       26
+#> 5 Physico-chemical      25
+#> 6 Universal             16
+#> 7 Adopted values        11
+#> 8 X-ray values           6
 ```
