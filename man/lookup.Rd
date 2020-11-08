@@ -4,7 +4,7 @@
 \alias{lookup}
 \title{Lookup for Fundamental Physical Constants}
 \usage{
-lookup(pattern, cols = c("quantity", "symbol", "type"), ...)
+lookup(pattern, cols = c("symbol", "quantity", "type"), ...)
 }
 \arguments{
 \item{pattern}{character string containing a regular expression to be matched

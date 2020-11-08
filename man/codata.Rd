@@ -3,18 +3,18 @@
 \docType{data}
 \name{codata}
 \alias{codata}
-\title{CODATA Recommended Values of the Fundamental Physical Constants: 2014}
-\format{\code{codata} is a data frame with ... cases (rows) and 6 variables (columns)
-named \code{quantity}, \code{symbol}, \code{value}, \code{unit}, \code{rel_uncertainty},
-and \code{type}.}
+\title{CODATA Recommended Values of the Fundamental Physical Constants: 2018}
+\format{
+\code{codata} is a data frame with ... cases (rows) and 6 variables
+(columns) named \code{symbol}, \code{quantity}, \code{type}, \code{value},
+\code{uncertainty}, \code{unit}.
+}
 \source{
-Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
-values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-88, 035009. \doi{10.1103/RevModPhys.88.035009}.
-
-Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
-of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-45, 043102. \doi{10.1063/1.4954402}.
+Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
+The 2018 CODATA Recommended Values of the Fundamental Physical Constants
+(Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
+Available at http://physics.nist.gov/constants,
+National Institute of Standards and Technology, Gaithersburg, MD 20899.
 }
 \usage{
 codata
@@ -23,8 +23,8 @@ codata
 The Committee on Data for Science and Technology (CODATA) is an interdisciplinary
 committee of the International Council for Science. The Task Group on Fundamental
 Constants periodically provides the internationally accepted set of values of
-the fundamental physical constants. This dataset contains the "2014 CODATA"
-version, published on 25 June 2015.
+the fundamental physical constants. This dataset contains the "2018 CODATA"
+version, published on May 2019.
 }
 \seealso{
 \code{\link{syms}}, \code{\link{lookup}}.

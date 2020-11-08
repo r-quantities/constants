@@ -6,7 +6,13 @@
 \alias{syms_with_errors}
 \alias{syms_with_units}
 \title{Lists Containing All Symbols.}
-\format{An object of class list or NULL (if not available).}
+\format{
+An object of class list or NULL (if not available).
+
+An object of class \code{list} of length 354.
+
+An object of class \code{list} of length 354.
+}
 \usage{
 syms
 
@@ -32,13 +38,13 @@ with(syms, c0)
 
 # the Planck constant
 attach(syms)
-hbar
+h
 
 detach(syms); attach(syms_with_errors)
-hbar
+h
 
 detach(syms_with_errors); attach(syms_with_units)
-hbar
+h
 
 }
 \seealso{

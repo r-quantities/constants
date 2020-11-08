@@ -1,7 +1,7 @@
 context("constants")
 
 test_that("the dataset has the right number of columns", {
-  expect_equal(names(codata), c("quantity", "symbol", "value", "unit", "rel_uncertainty", "type"))
+  expect_equal(names(codata), c("symbol", "quantity", "type", "value", "uncertainty", "unit"))
 })
 
 test_that("the symbols are correctly set", {

@@ -1,17 +1,16 @@
 #' \pkg{constants}: Reference on Constants, Units and Uncertainty
 #'
-#' This package provides the 2014 version of the CODATA internationally recommended
+#' This package provides the 2018 version of the CODATA internationally recommended
 #' values of the fundamental physical constants for their use within the \R language.
 #'
 #' @author Iñaki Ucar
 #'
-#' @references Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
-#' values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-#' 88, 035009. \doi{10.1103/RevModPhys.88.035009}.
-#'
-#' Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
-#' of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-#' 45, 043102. \doi{10.1063/1.4954402}.
+#' @references
+#' Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
+#' The 2018 CODATA Recommended Values of the Fundamental Physical Constants
+#' (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
+#' Available at http://physics.nist.gov/constants,
+#' National Institute of Standards and Technology, Gaithersburg, MD 20899.
 #'
 #' @seealso \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
 #'
@@ -19,25 +18,24 @@
 #' @name constants-package
 NULL
 
-#' CODATA Recommended Values of the Fundamental Physical Constants: 2014
+#' CODATA Recommended Values of the Fundamental Physical Constants: 2018
 #'
 #' The Committee on Data for Science and Technology (CODATA) is an interdisciplinary
 #' committee of the International Council for Science. The Task Group on Fundamental
 #' Constants periodically provides the internationally accepted set of values of
-#' the fundamental physical constants. This dataset contains the "2014 CODATA"
-#' version, published on 25 June 2015.
+#' the fundamental physical constants. This dataset contains the "2018 CODATA"
+#' version, published on May 2019.
 #'
-#' @format \code{codata} is a data frame with ... cases (rows) and 6 variables (columns)
-#' named \code{quantity}, \code{symbol}, \code{value}, \code{unit}, \code{rel_uncertainty},
-#' and \code{type}.
+#' @format \code{codata} is a data frame with ... cases (rows) and 6 variables
+#' (columns) named \code{symbol}, \code{quantity}, \code{type}, \code{value},
+#' \code{uncertainty}, \code{unit}.
 #'
-#' @source Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
-#' values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-#' 88, 035009. \doi{10.1103/RevModPhys.88.035009}.
-#'
-#' Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
-#' of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-#' 45, 043102. \doi{10.1063/1.4954402}.
+#' @source
+#' Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
+#' The 2018 CODATA Recommended Values of the Fundamental Physical Constants
+#' (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
+#' Available at http://physics.nist.gov/constants,
+#' National Institute of Standards and Technology, Gaithersburg, MD 20899.
 #'
 #' @seealso \code{\link{syms}}, \code{\link{lookup}}.
 "codata"
@@ -64,13 +62,13 @@ NULL
 #'
 #' # the Planck constant
 #' attach(syms)
-#' hbar
+#' h
 #'
 #' detach(syms); attach(syms_with_errors)
-#' hbar
+#' h
 #'
 #' detach(syms_with_errors); attach(syms_with_units)
-#' hbar
+#' h
 #'
 #' @export
 syms <- list()
@@ -92,29 +90,29 @@ syms_with_units <- NULL
   if (requireNamespace("errors", quietly = TRUE)) {
     syms_with_errors <<- syms
     for (i in seq_along(syms))
-      errors::errors(syms_with_errors[[i]]) <<- syms[[i]] * constants::codata$rel_uncertainty[[i]]
+      errors::errors(syms_with_errors[[i]]) <<- constants::codata$uncertainty[[i]]
   }
 
   if (requireNamespace("units", quietly = TRUE)) {
-    if (utils::packageVersion("units") < "0.5.0")
-      parse_unit <- units::parse_unit
-    else parse_unit <- units::as_units
-
     # define the speed of light
-    # complex conversions won't work though (see units#71, units#84)
+    try(units::remove_symbolic_unit("c"), silent=TRUE)
     units::install_conversion_constant("c", "m/s", syms$c0)
 
     syms_with_units <<- syms
     for (i in seq_along(syms))
-      units(syms_with_units[[i]]) <<- parse_unit(constants::codata$unit[[i]])
+      units(syms_with_units[[i]]) <<- units::as_units(constants::codata$unit[[i]])
   }
 }
 
 .onAttach <- function(libname, pkgname) {
   if (!requireNamespace("errors", quietly = TRUE))
-    packageStartupMessage("Package 'errors' not found. Constants with errors ('syms_with_errors') not available.")
+    packageStartupMessage(paste(
+      "Package 'errors' not found.",
+      "Constants with errors ('syms_with_errors') not available."))
   if (!requireNamespace("units", quietly = TRUE))
-    packageStartupMessage("Package 'units' not found. Constants with units ('syms_with_units') not available.")
+    packageStartupMessage(paste(
+      "Package 'units' not found.",
+      "Constants with units ('syms_with_units') not available."))
 }
 
 #' Lookup for Fundamental Physical Constants
@@ -132,7 +130,7 @@ syms_with_units <- NULL
 #' lookup("planck", ignore.case=TRUE)
 #'
 #' @export
-lookup <- function(pattern, cols=c("quantity", "symbol", "type"), ...) {
+lookup <- function(pattern, cols=c("symbol", "quantity", "type"), ...) {
   cols <- match.arg(cols, several.ok = TRUE)
   ind <- do.call(c, lapply(cols, function(col) grep(pattern, constants::codata[[col]], ...)))
   constants::codata[sort(unique(ind)),]
