@@ -26,9 +26,10 @@ NULL
 #' the fundamental physical constants. This dataset contains the "2018 CODATA"
 #' version, published on May 2019.
 #'
-#' @format \code{codata} is a data frame with ... cases (rows) and 6 variables
-#' (columns) named \code{symbol}, \code{quantity}, \code{type}, \code{value},
-#' \code{uncertainty}, \code{unit}.
+#' @format An object of class \code{data.frame} with the following information
+#' for each physical constant:
+#' ASCII \code{symbol}, \code{quantity} description, \code{type},
+#' \code{value}, \code{uncertainty}, \code{unit}.
 #'
 #' @source
 #' Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
@@ -40,57 +41,114 @@ NULL
 #' @seealso \code{\link{syms}}, \code{\link{lookup}}.
 "codata"
 
-#' Lists Containing All Symbols.
+#' @name codata
+#' @format A \code{matrix} of correlations between physical constants.
+"codata.cor"
+
+#' Lists of Constants
 #'
-#' These lists contain the named values for all the fundamental physical constants.
+#' These named lists contain ready-to-use values for all the fundamental
+#' physical constants.
 #'
-#' @format An object of class list or NULL (if not available).
+#' Experimental support for correlations between constants is provided via the
+#' \pkg{errors} package, but it is disabled by default. To enable it, the
+#' following option must be set before loading the package:
 #'
-#' @details \code{syms} contains plain numeric values. \code{syms_with_errors} contains
-#' objects of type \code{errors}, which encloses values with absolute errors and enables
-#' automatic error propagation (only available if the \code{errors} package is installed;
-#' see the documentation of that package for further information). \code{syms_with_units}
-#' contains objects of type \code{units}, which encloses values with units and enables
-#' automatic conversion, derivation and simplification (only available if the \code{units}
-#' package is installed; see the documentation of that package for further information).
+#' \code{options(constants.correlations=TRUE)}
+#'
+#' Alternatively, \code{constants:::set_correlations()} may be used
+#' interactively, but scripts should not rely on this non-exported function,
+#' as it may disappear in future versions.
+#'
+#' @format
+#' A \code{list}, where names correspond to symbols in \code{codata$symbol}.
+#' \itemize{
+#' \item \code{syms} contains plain numeric values.
+#' \item \code{syms_with_errors} contains objects of type \code{errors}, which
+#' enables automatic uncertainty propagation.
+#' \item \code{syms_with_units} contains objects of type \code{units}, which
+#' enables automatic conversion, derivation and simplification.
+#' \item \code{syms_with_quantities} contains objects of type \code{quantities},
+#' which combines \code{errors} and \code{units}.
+#' }
+#' The enriched versions of \code{syms} are available only if the corresponding
+#' optional packages, \pkg{errors}, \pkg{units} and/or \pkg{quantities} are
+#' installed. See the documentation of these packages for further information.
 #'
 #' @seealso \code{\link{codata}}, \code{\link{lookup}}.
 #'
 #' @examples
 #' # the speed of light
+#' syms$c0
+#' # use the constants in a local environment
 #' with(syms, c0)
 #'
-#' # the Planck constant
-#' attach(syms)
+#' # attach only Planck-related constants
+#' (lkp <- lookup("planck", ignore.case=TRUE))
+#' idx <- as.integer(rownames(lkp))
+#' attach(syms[idx])
 #' h
+#' plkl
 #'
-#' detach(syms); attach(syms_with_errors)
+#' # the same with uncertainty
+#' detach(syms[idx])
+#' attach(syms_with_errors[idx])
 #' h
+#' plkl
 #'
-#' detach(syms_with_errors); attach(syms_with_units)
+#' # the same with units
+#' detach(syms_with_errors[idx])
+#' attach(syms_with_units[idx])
 #' h
+#' plkl
+#'
+#' # the same with everything
+#' detach(syms_with_units[idx])
+#' attach(syms_with_quantities[idx])
+#' h
+#' plkl
 #'
 #' @export
-syms <- list()
+syms <- NULL
 
-#' @rdname syms
+#' @name syms
+#' @format NULL
 #' @export
 syms_with_errors <- NULL
 
-#' @rdname syms
+#' @name syms
+#' @format NULL
 #' @export
 syms_with_units <- NULL
 
+#' @name syms
+#' @format NULL
+#' @export
+syms_with_quantities <- NULL
+
+set_correlations <- function() {
+  stopifnot(requireNamespace("errors", quietly = TRUE))
+
+  n <- length(syms_with_errors)
+  e.diag <- diag(constants::codata$uncertainty)
+  codata.cov <- e.diag %*% constants::codata.cor %*% e.diag
+  for (i in seq_len(n-1)) for (j in (i+1):n) {
+    ijcov <- codata.cov[i, j]
+    if (!ijcov) next
+    errors::covar(syms_with_errors[[i]], syms_with_errors[[j]]) <- ijcov
+  }
+}
+
 .onLoad <- function(libname, pkgname) {
   syms <<- as.list(constants::codata$value)
-  names(syms) <<- constants::codata$symbol
-  for (i in seq_along(syms))
-    syms[[i]] <<- eval(parse(text=syms[[i]]), envir = syms)
+  names(syms) <<- as.vector(constants::codata$symbol)
 
   if (requireNamespace("errors", quietly = TRUE)) {
-    syms_with_errors <<- syms
-    for (i in seq_along(syms))
-      errors::errors(syms_with_errors[[i]]) <<- constants::codata$uncertainty[[i]]
+    syms_with_errors <<- Map(
+      errors::set_errors, syms, constants::codata$uncertainty)
+
+    if (getOption("constants.correlations", FALSE))
+      set_correlations()
   }
 
   if (requireNamespace("units", quietly = TRUE)) {
@@ -98,9 +156,13 @@ syms_with_units <- NULL
     try(units::remove_symbolic_unit("c"), silent=TRUE)
     units::install_conversion_constant("c", "m/s", syms$c0)
 
-    syms_with_units <<- syms
-    for (i in seq_along(syms))
-      units(syms_with_units[[i]]) <<- units::as_units(constants::codata$unit[[i]])
+    syms_with_units <<- Map(
+      units::set_units, syms, constants::codata$unit, mode="standard")
+  }
+
+  if (requireNamespace("quantities", quietly = TRUE)) {
+    syms_with_quantities <<- Map(
+      units::set_units, syms_with_errors, constants::codata$unit, mode="standard")
   }
 }
 
@@ -108,11 +170,15 @@ syms_with_units <- NULL
   if (!requireNamespace("errors", quietly = TRUE))
     packageStartupMessage(paste(
       "Package 'errors' not found.",
-      "Constants with errors ('syms_with_errors') not available."))
+      "Constants with uncertainty ('syms_with_errors') not available."))
   if (!requireNamespace("units", quietly = TRUE))
     packageStartupMessage(paste(
       "Package 'units' not found.",
       "Constants with units ('syms_with_units') not available."))
+  if (!requireNamespace("quantities", quietly = TRUE))
+    packageStartupMessage(paste(
+      "Package 'quantities' not found.",
+      "Constants with uncertainty+units ('syms_with_quantities') not available."))
 }
 
 #' Lookup for Fundamental Physical Constants
@@ -132,6 +198,7 @@ syms_with_units <- NULL
 #' @export
 lookup <- function(pattern, cols=c("symbol", "quantity", "type"), ...) {
   cols <- match.arg(cols, several.ok = TRUE)
-  ind <- do.call(c, lapply(cols, function(col) grep(pattern, constants::codata[[col]], ...)))
+  ind <- do.call(c, lapply(
+    cols, function(col) grep(pattern, constants::codata[[col]], ...)))
   constants::codata[sort(unique(ind)),]
 }

@@ -3,4 +3,5 @@
 export(lookup)
 export(syms)
 export(syms_with_errors)
+export(syms_with_quantities)
 export(syms_with_units)

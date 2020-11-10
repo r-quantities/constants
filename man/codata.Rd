@@ -3,11 +3,15 @@
 \docType{data}
 \name{codata}
 \alias{codata}
+\alias{codata.cor}
 \title{CODATA Recommended Values of the Fundamental Physical Constants: 2018}
 \format{
-\code{codata} is a data frame with ... cases (rows) and 6 variables
-(columns) named \code{symbol}, \code{quantity}, \code{type}, \code{value},
-\code{uncertainty}, \code{unit}.
+An object of class \code{data.frame} with the following information
+for each physical constant:
+ASCII \code{symbol}, \code{quantity} description, \code{type},
+\code{value}, \code{uncertainty}, \code{unit}.
+
+A \code{matrix} of correlations between physical constants.
 }
 \source{
 Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
@@ -18,6 +22,8 @@ National Institute of Standards and Technology, Gaithersburg, MD 20899.
 }
 \usage{
 codata
+
+codata.cor
 }
 \description{
 The Committee on Data for Science and Technology (CODATA) is an interdisciplinary

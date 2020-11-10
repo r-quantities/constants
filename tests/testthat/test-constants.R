@@ -22,4 +22,11 @@ test_that("the symbols are correctly set", {
     expect_equal(as.vector(codata$symbol), names(syms_with_units))
     expect_equal(as.numeric(syms), as.numeric(syms_with_units))
   } else expect_null(syms_with_units)
+
+  if (requireNamespace("quantities", quietly = TRUE)) {
+    expect_true(all(do.call(c, lapply(syms_with_quantities, inherits, "quantities"))))
+    expect_equal(nrow(codata), length(syms_with_quantities))
+    expect_equal(as.vector(codata$symbol), names(syms_with_quantities))
+    expect_equal(as.numeric(syms), as.numeric(syms_with_quantities))
+  } else expect_null(syms_with_quantities)
 })
