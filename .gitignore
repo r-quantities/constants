@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+wdir/tmp
 
 # Compiled Object files
 *.slo

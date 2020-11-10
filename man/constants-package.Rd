@@ -5,17 +5,15 @@
 \alias{constants-package}
 \title{\pkg{constants}: Reference on Constants, Units and Uncertainty}
 \description{
-This package provides the 2014 version of the CODATA internationally recommended
+This package provides the 2018 version of the CODATA internationally recommended
 values of the fundamental physical constants for their use within the \R language.
 }
 \references{
-Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended
-values of the fundamental physical constants: 2014. \emph{Rev. Mod. Phys.},
-88, 035009. \doi{10.1103/RevModPhys.88.035009}.
-
-Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016). CODATA recommended values
-of the fundamental physical constants: 2014. \emph{J. Phys. Chem. Ref. Data},
-45, 043102. \doi{10.1063/1.4954402}.
+Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
+The 2018 CODATA Recommended Values of the Fundamental Physical Constants
+(Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
+Available at http://physics.nist.gov/constants,
+National Institute of Standards and Technology, Gaithersburg, MD 20899.
 }
 \seealso{
 \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.

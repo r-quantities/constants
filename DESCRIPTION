@@ -1,27 +1,27 @@
 Package: constants
 Type: Package
 Title: Reference on Constants, Units and Uncertainty
-Version: 0.0.2.9000
+Version: 1.0.0
 Authors@R: c(
     person("Iñaki", "Ucar", email="iucar@fedoraproject.org",
       role=c("aut", "cph", "cre"), comment=c(ORCID="0000-0001-6403-5550")))
-Description: CODATA internationally recommended values of the fundamental physical
-    constants, provided as symbols for direct use within the R language. Optionally,
-    the values with errors and/or the values with units are also provided if the
-    'errors' and/or the 'units' packages are installed. The Committee on Data
-    for Science and Technology (CODATA) is an interdisciplinary committee of the
-    International Council for Science which periodically provides the internationally
-    accepted set of values of the fundamental physical constants. This package
-    contains the "2014 CODATA" version, published on 25 June 2015:
-    Mohr, P. J., Newell, D. B. and Taylor, B. N. (2016)
-    <DOI:10.1103/RevModPhys.88.035009>, <DOI:10.1063/1.4954402>.
+Description: CODATA internationally recommended values of the fundamental
+    physical constants, provided as symbols for direct use within the R language.
+    Optionally, the values with uncertainties and/or units are also provided if
+    the 'errors', 'units' and/or 'quantities' packages are installed.
+    The Committee on Data for Science and Technology (CODATA) is an
+    interdisciplinary committee of the International Council for Science which
+    periodically provides the internationally accepted set of values of the
+    fundamental physical constants. This package contains the "2018 CODATA"
+    version, published on May 2019:
+    Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020)
+    <http://physics.nist.gov/constants>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 URL: https://github.com/r-quantities/constants
 BugReports: https://github.com/r-quantities/constants/issues
-Depends: R (>= 3.0.0)
-Imports: utils
-Suggests: errors, units, testthat
+Depends: R (>= 3.5.0)
+Suggests: errors (>= 0.3.6), units, quantities, testthat
 ByteCompile: yes
-RoxygenNote: 6.0.1
+RoxygenNote: 7.1.1

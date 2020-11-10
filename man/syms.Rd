@@ -5,40 +5,77 @@
 \alias{syms}
 \alias{syms_with_errors}
 \alias{syms_with_units}
-\title{Lists Containing All Symbols.}
-\format{An object of class list or NULL (if not available).}
+\alias{syms_with_quantities}
+\title{Lists of Constants}
+\format{
+A \code{list}, where names correspond to symbols in \code{codata$symbol}.
+\itemize{
+\item \code{syms} contains plain numeric values.
+\item \code{syms_with_errors} contains objects of type \code{errors}, which
+enables automatic uncertainty propagation.
+\item \code{syms_with_units} contains objects of type \code{units}, which
+enables automatic conversion, derivation and simplification.
+\item \code{syms_with_quantities} contains objects of type \code{quantities},
+which combines \code{errors} and \code{units}.
+}
+The enriched versions of \code{syms} are available only if the corresponding
+optional packages, \pkg{errors}, \pkg{units} and/or \pkg{quantities} are
+installed. See the documentation of these packages for further information.
+}
 \usage{
 syms
 
 syms_with_errors
 
 syms_with_units
+
+syms_with_quantities
 }
 \description{
-These lists contain the named values for all the fundamental physical constants.
+These named lists contain ready-to-use values for all the fundamental
+physical constants.
 }
 \details{
-\code{syms} contains plain numeric values. \code{syms_with_errors} contains
-objects of type \code{errors}, which encloses values with absolute errors and enables
-automatic error propagation (only available if the \code{errors} package is installed;
-see the documentation of that package for further information). \code{syms_with_units}
-contains objects of type \code{units}, which encloses values with units and enables
-automatic conversion, derivation and simplification (only available if the \code{units}
-package is installed; see the documentation of that package for further information).
+Experimental support for correlations between constants is provided via the
+\pkg{errors} package, but it is disabled by default. To enable it, the
+following option must be set before loading the package:
+
+\code{options(constants.correlations=TRUE)}
+
+Alternatively, \code{constants:::set_correlations()} may be used
+interactively, but scripts should not rely on this non-exported function,
+as it may disappear in future versions.
 }
 \examples{
 # the speed of light
+syms$c0
+# use the constants in a local environment
 with(syms, c0)
 
-# the Planck constant
-attach(syms)
-hbar
+# attach only Planck-related constants
+(lkp <- lookup("planck", ignore.case=TRUE))
+idx <- as.integer(rownames(lkp))
+attach(syms[idx])
+h
+plkl
 
-detach(syms); attach(syms_with_errors)
-hbar
+# the same with uncertainty
+detach(syms[idx])
+attach(syms_with_errors[idx])
+h
+plkl
 
-detach(syms_with_errors); attach(syms_with_units)
-hbar
+# the same with units
+detach(syms_with_errors[idx])
+attach(syms_with_units[idx])
+h
+plkl
+
+# the same with everything
+detach(syms_with_units[idx])
+attach(syms_with_quantities[idx])
+h
+plkl
 
 }
 \seealso{
