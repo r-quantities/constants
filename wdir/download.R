@@ -38,7 +38,7 @@ extract_symbols <- function(x) {
 
 # Build codata table ###########################################################
 
-# * read all names, symbols, categories ----
+# * quantity, symbol, type ----
 codata <- extract_symbols("All+values")
 types <- do.call(rbind, lapply(categories, function(x) data.frame(
   symbol = extract_symbols(x)$symbol,
@@ -48,11 +48,11 @@ types <- do.call(rbind, lapply(categories, function(x) data.frame(
 types <- aggregate(type ~ symbol, types, toString)
 codata <- merge(codata, types, all=TRUE, sort=FALSE)
 
-# * read value, unit, uncertainty ----
+# * value, unit, uncertainty ----
 values <- do.call(rbind, lapply(codata$symbol, function(symbol) {
   html <- read_html(sprintf(paste0(base_url, vals_url), symbol), symbol)
   if (!length(xml_children(html)))
-    return(data.frame(symbol=symbol, value=NA, unit=NA, uncertainty=NA))
+    return(NULL) # broken link safe-guard
 
   # take "concise form" and clean it
   raw <- xml_text(xml_find_all(html, "body/table/tr/td[2]/table/tr/td[2]"))[4]
@@ -63,7 +63,7 @@ values <- do.call(rbind, lapply(codata$symbol, function(symbol) {
   raw <- sub("...", "", raw, fixed=TRUE)                # remove dots
   raw <- gsub(")-", ")^-", raw, fixed=TRUE)             # required by units
 
-  # now we can parse it to capture everything reliablyd
+  # now we can parse it to capture everything reliably
   quantity <- parse_quantities(raw)
   data.frame(
     symbol = symbol,
@@ -73,9 +73,56 @@ values <- do.call(rbind, lapply(codata$symbol, function(symbol) {
   )
 }))
 codata <- merge(codata, values, all=TRUE, sort=FALSE)
-codata <- subset(codata, !is.na(value))
+codata <- subset(codata, !is.na(value)) # remove broken links
+rownames(codata) <- NULL
 
-# * fix symbols that are functions in base R (by appending a zero) ----
+# Build correlation matrix #####################################################
+# WARNING: this takes a lot of time currently, because there many pairs
+# ~2/3 of these combinations have correlation 0 or 1, so this can be optimized
+
+pairs <- t(combn(codata$symbol, 2))
+corr <- do.call(rbind, apply(pairs, 1, function(pair) {
+  html <- read_html(
+    sprintf(paste0(base_url, corr_url), pair[1], pair[2]),
+    paste0(pair, collapse="-"))
+  if (!length(xml_children(html)))
+    return(NULL) # broken link safe-guard
+
+  # take the "r = ..." line
+  raw <- xml_text(xml_find_all(html, "body/table/tr/td[2]/table/tr/td[1]"))
+  raw <- gsub("\xc2\xa0| ", "", raw) # remove spaces
+  raw <- grep("r=", raw, value=TRUE) # take the desired field
+
+  data.frame(
+    symbol1 = pair[1], symbol2 = pair[2],
+    r = as.numeric(strsplit(raw, "=")[[1]][2])
+  )
+}))
+# add first and last
+fl <- lapply(codata$symbol[c(1, nrow(codata))], function(x) list(x, x, 1))
+corr <- do.call(rbind, modifyList(fl, list(corr=corr)))
+# spread to matrix
+codata.cor <- tidyr::spread(corr, symbol2, r)
+rownames(codata.cor) <- codata.cor$symbol1
+codata.cor$symbol1 <- NULL
+codata.cor <- as.matrix(codata.cor)
+# reorder to match codata dataframe
+symbol_order <- rank(codata$symbol)
+codata.cor <- codata.cor[symbol_order, symbol_order]
+# fill in the gaps
+diag(codata.cor) <- 1
+codata.cor[lower.tri(codata.cor)] <- t(codata.cor)[lower.tri(codata.cor)]
+
+# Save data ####################################################################
+
+# save original symbols as an attribute
+attr(codata$symbol, "nist") <- codata$symbol
+# fix symbols that are functions in base R (by appending a zero)
 isfun <- sapply(codata$symbol, function(i) is.function(get0(i)))
 codata$symbol[isfun] <- paste0(codata$symbol[isfun], 0)
+colnames(codata.cor) <- codata$symbol
+rownames(codata.cor) <- codata$symbol
+
 #save(codata, file="data/codata.rda")
+#save(codata.cor, file="data/codata.cor.rda")
+#tools::resaveRdaFiles("data")
