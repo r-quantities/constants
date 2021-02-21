@@ -1,7 +1,7 @@
 Package: constants
 Type: Package
 Title: Reference on Constants, Units and Uncertainty
-Version: 1.0.0
+Version: 1.0.1
 Authors@R: c(
     person("Iñaki", "Ucar", email="iucar@fedoraproject.org",
       role=c("aut", "cph", "cre"), comment=c(ORCID="0000-0001-6403-5550")))

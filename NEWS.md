@@ -1,3 +1,7 @@
+# constants 1.0.1
+
+- Fix compatibility with `units` 0.7-0.
+
 # constants 1.0.0
 
 Update to version 8.1, the 2018 CODATA recommended values (#7 addressing #6).

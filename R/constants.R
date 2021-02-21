@@ -153,8 +153,13 @@ set_correlations <- function() {
 
   if (requireNamespace("units", quietly = TRUE)) {
     # define the speed of light
-    try(units::remove_symbolic_unit("c"), silent=TRUE)
-    units::install_conversion_constant("c", "m/s", syms$c0)
+    if (utils::packageVersion("units") < "0.7-0") {
+      try(units::remove_symbolic_unit("c"), silent=TRUE)
+      units::install_conversion_constant("c", "m/s", syms$c0)
+    } else {
+      units::remove_unit("c")
+      units::install_unit("c", paste(syms$c0, "m/s"))
+    }
 
     syms_with_units <<- Map(
       units::set_units, syms, constants::codata$unit, mode="standard")
