@@ -1,9 +1,6 @@
-## Major release
+## Patch release (resubmission)
 
-Update to version 8.1, the 2018 CODATA recommended values.
-
-The maintainer's address has changed. It is the same account, just a different
-alias. I'm sending confirmation from the previous address to CRAN-submissions.
+Fixes compatibility with upcoming `units` 0.7-0.
 
 ## Test environments
 
@@ -16,4 +13,4 @@ There were no ERRORs, WARNINGs or NOTEs.
 
 ## Downstream dependencies
 
-There are currently no downstream dependencies for this package.
+There are no downstream dependencies for this package.

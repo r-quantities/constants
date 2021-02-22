@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 
 The **constants** package provides the CODATA internationally recommended values of the fundamental physical constants, provided as symbols for direct use within the R language. Optionally, the values with uncertainties and/or units are also provided if the 'errors', 'units' and/or 'quantities' packages are installed. The Committee on Data for Science and Technology (CODATA) is an interdisciplinary committee of the International Council for Science which periodically provides the internationally accepted set of values of the fundamental physical constants. This package contains the "2018 CODATA" version, published on May 2019.
 
-> Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020). The 2018 CODATA Recommended Values of the Fundamental Physical Constants (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova. Available at http://physics.nist.gov/constants, National Institute of Standards and Technology, Gaithersburg, MD 20899.
+> Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020). The 2018 CODATA Recommended Values of the Fundamental Physical Constants (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova. Available at https://physics.nist.gov/cuu/Constants/, National Institute of Standards and Technology, Gaithersburg, MD 20899.
 
 ## Installation
 

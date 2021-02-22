@@ -9,7 +9,7 @@
 #' Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
 #' The 2018 CODATA Recommended Values of the Fundamental Physical Constants
 #' (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
-#' Available at http://physics.nist.gov/constants,
+#' Available at https://physics.nist.gov/cuu/Constants/,
 #' National Institute of Standards and Technology, Gaithersburg, MD 20899.
 #'
 #' @seealso \code{\link{codata}}, \code{\link{syms}}, \code{\link{lookup}}.
@@ -35,7 +35,7 @@ NULL
 #' Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
 #' The 2018 CODATA Recommended Values of the Fundamental Physical Constants
 #' (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
-#' Available at http://physics.nist.gov/constants,
+#' Available at https://physics.nist.gov/cuu/Constants/,
 #' National Institute of Standards and Technology, Gaithersburg, MD 20899.
 #'
 #' @seealso \code{\link{syms}}, \code{\link{lookup}}.
@@ -154,11 +154,11 @@ set_correlations <- function() {
   if (requireNamespace("units", quietly = TRUE)) {
     # define the speed of light
     if (utils::packageVersion("units") < "0.7-0") {
-      try(units::remove_symbolic_unit("c"), silent=TRUE)
-      units::install_conversion_constant("c", "m/s", syms$c0)
+      try(getExportedValue("units", "remove_symbolic_unit")("c"), silent=TRUE)
+      getExportedValue("units", "install_conversion_constant")("c", "m/s", syms$c0)
     } else {
-      units::remove_unit("c")
-      units::install_unit("c", paste(syms$c0, "m/s"))
+      getExportedValue("units", "remove_unit")("c")
+      getExportedValue("units", "install_unit")("c", paste(syms$c0, "m/s"))
     }
 
     syms_with_units <<- Map(

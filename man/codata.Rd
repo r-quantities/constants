@@ -17,7 +17,7 @@ A \code{matrix} of correlations between physical constants.
 Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
 The 2018 CODATA Recommended Values of the Fundamental Physical Constants
 (Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
-Available at http://physics.nist.gov/constants,
+Available at https://physics.nist.gov/cuu/Constants/,
 National Institute of Standards and Technology, Gaithersburg, MD 20899.
 }
 \usage{

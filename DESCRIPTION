@@ -15,7 +15,7 @@ Description: CODATA internationally recommended values of the fundamental
     fundamental physical constants. This package contains the "2018 CODATA"
     version, published on May 2019:
     Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020)
-    <http://physics.nist.gov/constants>.
+    <https://physics.nist.gov/cuu/Constants/>.
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
