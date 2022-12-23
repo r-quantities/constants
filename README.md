@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# <img src="https://avatars1.githubusercontent.com/u/32303769?s=40&v=4"> constants: Reference on Constants, Units and Uncertainty
+# <img src="https://avatars1.githubusercontent.com/u/32303769?s=40&v=4"> Reference on Constants, Units and Uncertainty
 
 <!-- badges: start -->
 [![Build

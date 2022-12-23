@@ -12,7 +12,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# <img src="https://avatars1.githubusercontent.com/u/32303769?s=40&v=4"> constants: Reference on Constants, Units and Uncertainty
+# <img src="https://avatars1.githubusercontent.com/u/32303769?s=40&v=4"> Reference on Constants, Units and Uncertainty
 
 <!-- badges: start -->
 [![Build Status](https://github.com/r-quantities/constants/workflows/build/badge.svg)](https://github.com/r-quantities/constants/actions)
