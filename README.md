@@ -3,12 +3,14 @@
 
 # <img src="https://avatars1.githubusercontent.com/u/32303769?s=40&v=4"> constants: Reference on Constants, Units and Uncertainty
 
+<!-- badges: start -->
 [![Build
 Status](https://github.com/r-quantities/constants/workflows/build/badge.svg)](https://github.com/r-quantities/constants/actions)
 [![Coverage
 Status](https://codecov.io/gh/r-quantities/constants/branch/master/graph/badge.svg)](https://codecov.io/gh/r-quantities/constants)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
 [![Downloads](https://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
+<!-- badges: start -->
 
 The **constants** package provides the CODATA internationally
 recommended values of the fundamental physical constants, provided as
