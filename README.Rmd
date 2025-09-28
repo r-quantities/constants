@@ -16,7 +16,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![Build Status](https://github.com/r-quantities/constants/workflows/build/badge.svg)](https://github.com/r-quantities/constants/actions)
-[![Coverage Status](https://codecov.io/gh/r-quantities/constants/branch/master/graph/badge.svg)](https://codecov.io/gh/r-quantities/constants)
+[![Coverage Status](https://app.codecov.io/gh/r-quantities/constants/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-quantities/constants)
 [![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
 [![Downloads](https://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
 <!-- badges: end -->
