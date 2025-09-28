@@ -1,6 +1,6 @@
-## Patch release (resubmission)
+## New release
 
-Fixes compatibility with upcoming `units` 0.7-0.
+Major update to 2022 values. New versioning scheme to follow values' year.
 
 ## Test environments
 
@@ -13,4 +13,4 @@ There were no ERRORs, WARNINGs or NOTEs.
 
 ## Downstream dependencies
 
-There are no downstream dependencies for this package.
+No issues found.
