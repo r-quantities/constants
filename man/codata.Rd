@@ -4,7 +4,7 @@
 \name{codata}
 \alias{codata}
 \alias{codata.cor}
-\title{CODATA Recommended Values of the Fundamental Physical Constants: 2018}
+\title{CODATA Recommended Values of the Fundamental Physical Constants: 2022}
 \format{
 An object of class \code{data.frame} with the following information
 for each physical constant:
@@ -14,9 +14,9 @@ ASCII \code{symbol}, \code{quantity} description, \code{type},
 A \code{matrix} of correlations between physical constants.
 }
 \source{
-Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
-The 2018 CODATA Recommended Values of the Fundamental Physical Constants
-(Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
+Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2024).
+The 2022 CODATA Recommended Values of the Fundamental Physical Constants
+(Web Version 9.0). Database developed by J. Baker, M. Douma, and S. Kotochigova.
 Available at https://physics.nist.gov/cuu/Constants/,
 National Institute of Standards and Technology, Gaithersburg, MD 20899.
 }
@@ -29,8 +29,8 @@ codata.cor
 The Committee on Data for Science and Technology (CODATA) is an interdisciplinary
 committee of the International Council for Science. The Task Group on Fundamental
 Constants periodically provides the internationally accepted set of values of
-the fundamental physical constants. This dataset contains the "2018 CODATA"
-version, published on May 2019.
+the fundamental physical constants. This dataset contains the "2022 CODATA"
+version, published on May 2024.
 }
 \seealso{
 \code{\link{syms}}, \code{\link{lookup}}.

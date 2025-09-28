@@ -2,16 +2,17 @@
 % Please edit documentation in R/constants.R
 \docType{package}
 \name{constants-package}
+\alias{constants}
 \alias{constants-package}
 \title{\pkg{constants}: Reference on Constants, Units and Uncertainty}
 \description{
-This package provides the 2018 version of the CODATA internationally recommended
+This package provides the 2022 version of the CODATA internationally recommended
 values of the fundamental physical constants for their use within the \R language.
 }
 \references{
-Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2020).
-The 2018 CODATA Recommended Values of the Fundamental Physical Constants
-(Web Version 8.1). Database developed by J. Baker, M. Douma, and S. Kotochigova.
+Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor (2024).
+The 2022 CODATA Recommended Values of the Fundamental Physical Constants
+(Web Version 9.0). Database developed by J. Baker, M. Douma, and S. Kotochigova.
 Available at https://physics.nist.gov/cuu/Constants/,
 National Institute of Standards and Technology, Gaithersburg, MD 20899.
 }

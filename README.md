@@ -4,13 +4,14 @@
 # <img src="https://avatars1.githubusercontent.com/u/32303769?s=40&v=4"> Reference on Constants, Units and Uncertainty
 
 <!-- badges: start -->
+
 [![Build
 Status](https://github.com/r-quantities/constants/workflows/build/badge.svg)](https://github.com/r-quantities/constants/actions)
 [![Coverage
-Status](https://app.codecov.io/gh/r-quantities/constants/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-quantities/constants)
-[![CRAN\_Status\_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
+Status](https://codecov.io/gh/r-quantities/constants/branch/master/graph/badge.svg)](https://app.codecov.io/gh/r-quantities/constants)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/constants)](https://cran.r-project.org/package=constants)
 [![Downloads](https://cranlogs.r-pkg.org/badges/constants)](https://cran.r-project.org/package=constants)
-<!-- badges: start -->
+<!-- badges: end -->
 
 The **constants** package provides the CODATA internationally
 recommended values of the fundamental physical constants, provided as
@@ -20,12 +21,12 @@ with uncertainties and/or units are also provided if the ‘errors’,
 Data for Science and Technology (CODATA) is an interdisciplinary
 committee of the International Council for Science which periodically
 provides the internationally accepted set of values of the fundamental
-physical constants. This package contains the “2018 CODATA” version,
-published on May 2019.
+physical constants. This package contains the “2022 CODATA” version,
+published on May 2014.
 
 > Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor
-> (2020). The 2018 CODATA Recommended Values of the Fundamental Physical
-> Constants (Web Version 8.1). Database developed by J. Baker, M. Douma,
+> (2024). The 2022 CODATA Recommended Values of the Fundamental Physical
+> Constants (Web Version 9.0). Database developed by J. Baker, M. Douma,
 > and S. Kotochigova. Available at
 > <https://physics.nist.gov/cuu/Constants/>, National Institute of
 > Standards and Technology, Gaithersburg, MD 20899.
@@ -135,11 +136,10 @@ head(codata)
 #> 6 7.294300e+03     2.4e-07      1
 
 # number of constants per type
-library(magrittr)
-codata %>%
-  tidyr::separate_rows(type, sep=", ") %>%
+codata |>
+  tidyr::separate_rows(type, sep=", ") |>
   dplyr::count(type, sort=TRUE)
-#> # A tibble: 8 x 2
+#> # A tibble: 8 × 2
 #>   type                   n
 #>   <chr>              <int>
 #> 1 Atomic and nuclear   173

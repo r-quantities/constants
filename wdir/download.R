@@ -1,8 +1,8 @@
 library(xml2)
 library(quantities)
 # some units depend on the speed of light
-try(units::remove_symbolic_unit("c"), silent=TRUE)
-install_conversion_constant("c", "m/s", 299792458)
+remove_unit("c")
+install_unit("c", "299792458 m/s")
 
 # URL parts ####################################################################
 
@@ -68,7 +68,7 @@ values <- do.call(rbind, lapply(codata$symbol, function(symbol) {
   data.frame(
     symbol = symbol,
     value = drop_quantities(quantity),
-    uncertainty = errors(quantity),
+    uncertainty = drop_units(errors(quantity)),
     unit = as.character(units(quantity))
   )
 }))

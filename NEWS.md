@@ -1,3 +1,8 @@
+# constants 2022.0
+
+Update to version 9.0, the 2022 CODATA recommended values.
+Package versioning has been aligned with the CODATA versioning scheme.
+
 # constants 1.0.1
 
 - Fix compatibility with `units` 0.7-0.
