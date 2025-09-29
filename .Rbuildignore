@@ -16,3 +16,4 @@ wdir
 ^docs$
 TODO
 ^CRAN-RELEASE$
+^CRAN-SUBMISSION$

@@ -22,7 +22,7 @@ Data for Science and Technology (CODATA) is an interdisciplinary
 committee of the International Council for Science which periodically
 provides the internationally accepted set of values of the fundamental
 physical constants. This package contains the “2022 CODATA” version,
-published on May 2014.
+published on May 2024.
 
 > Eite Tiesinga, Peter J. Mohr, David B. Newell, and Barry N. Taylor
 > (2024). The 2022 CODATA Recommended Values of the Fundamental Physical
